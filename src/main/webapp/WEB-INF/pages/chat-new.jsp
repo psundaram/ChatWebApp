@@ -350,66 +350,11 @@ $('.tab-close').click(function(){
 							<div id="chat-left" class="col-sm-4 no-padding">
 								<div id="search" class="top-buffer-10">
 									<div class="input-group" style="padding: 2px;">
-										<input type="text" class="form-control" placeholder="Enter Name">
+										<input type="text" class="form-control" placeholder="Enter Name" id="search_user">
 									</div>
 								</div>
 
 								<div class="name-list">
-
-									<!--<div class="group-chat-list hide">-->
-									<!--<ul class="media-list">-->
-									<!--<li class="media hvr-fade">-->
-									<!--<div class="media-body">-->
-									<!--<div class="media">-->
-									<!--<a class="pull-left" href="#">-->
-									<!--<img class="media-object img-circle online-green" src="assets/img/user.png">-->
-									<!--&lt;!&ndash;<div class="online-green"></div>&ndash;&gt;-->
-									<!--</a>-->
-
-									<!--<div class="media-body">-->
-									<!--<a href="#tabs-1" id="my-text-link1">User Name</a>-->
-									<!--<small class="text-muted"></small>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</li>-->
-
-									<!--<li class="media">-->
-									<!--<div class="media-body">-->
-									<!--<div class="media">-->
-									<!--<a class="pull-left" href="#">-->
-									<!--<img class="media-object img-circle online-green" src="assets/img/user.gif">-->
-
-									<!--&lt;!&ndash;<div class="online-red"></div>&ndash;&gt;-->
-									<!--</a>-->
-
-									<!--<div class="media-body">-->
-									<!--<a href="#tabs-2" id="my-text-link2">User Name</a>-->
-									<!--<small class="text-muted"></small>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</li>-->
-
-									<!--<li class="media">-->
-									<!--<div class="media-body">-->
-									<!--<div class="media">-->
-									<!--<a class="pull-left" href="#">-->
-									<!--<img class="media-object img-circle online-green" src="assets/img/user.png">-->
-
-									<!--&lt;!&ndash;<div class="online-orange"></div>&ndash;&gt;-->
-									<!--</a>-->
-
-									<!--<div class="media-body">-->
-									<!--<a href="#tabs-3" id="my-text-link3">User Name</a>-->
-									<!--<small class="text-muted"></small>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</div>-->
-									<!--</li>-->
-									<!--</ul>-->
-									<!--</div>-->
-
 									<div class="online-chat-list">
 										<ul class="media-list">
 											<c:forEach var="user" items="${users}" varStatus="i">
@@ -584,7 +529,8 @@ function addTab(e,index,userName){
 	   if (!$("."+e)[0]){
 		   
 	   $('#tabs').append('<li id=tabNo'+count+'><a href="#'+e+'" data-toggle="tab">'+userName+'</a><button type="button" class="close tab-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
-	   $('#my-tab-content').append('<div class="tab-pane '+e+' " id='+e+'> <div class="direct-chat-messages"><ul class="my-chat"><li class="message"></li></ul><input type="hidden" id="user'+count+'" value="'+userName+'" </div>');
+	   $('#my-tab-content').append('<div class="tab-pane '+e+' " id='+e+'><div class="box-body chat chat-fixed" style="padding: 0px; height: auto;"><div class="scrollable" data-scrollable-height="350" data-scrollable-start="bottom"> <div class="direct-chat-messages"><ul class="my-chat"><li class="message"></li></ul><input type="hidden" id="user'+count+'" value="'+userName+'" </div>');
+	   
 	  
       }
    }
@@ -707,7 +653,7 @@ function onOpenReceive(event) {
         }else{
         	var count = ++i;
         	 $('#tabs').append('<li id=tabNo'+count+'><a href="#'+name[0]+'" data-toggle="tab">'+user+'</a><button type="button" class="close tab-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
-      	   $('#my-tab-content').append('<div class="tab-pane '+name[0]+' " id='+name[0]+'> <div class="direct-chat-messages"><ul class="my-chat"><li class="message"></li></ul><input type="hidden" id="user'+count+'" value="'+user+'" </div>');
+      	   $('#my-tab-content').append('<div class="tab-pane '+name[0]+' " id='+name[0]+'> <div class="box-body chat chat-fixed" style="padding: 0px; height: auto;"><div class="scrollable" data-scrollable-height="350" data-scrollable-start="bottom"><div class="direct-chat-messages"><ul class="my-chat"><li class="message"></li></ul><input type="hidden" id="user'+count+'" value="'+user+'" </div>');
       	       	
         	//$('#tabs').append('<li id=tabNo'+count+'><a href="#tabs-'+count+'" data-toggle="tab">'+user+'</a><button type="button" class="close tab-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
      	   	//$('#my-tab-content').append('<div class="tab-pane '+name[0]+' " id="tabs-'+count+'"> <div class="direct-chat-messages"><ul class="my-chat"><li class="message"></li></ul><input type="hidden" id="user'+count+'" value="'+user+'" </div>');
@@ -748,6 +694,20 @@ function onOpenReceive(event) {
             Chat_Sender(e);
         }
     });
+    $('#search_user').keyup(function(e){
+    	 if (e.keyCode == 13)
+         {
+             $.ajax({
+            	 url: "search_user",
+            	 data:{"searchString":$('#search_user').val()},
+            	  success: function(result){
+                    alert(result);
+                 }
+             });
+    		 alert($('#search_user').val());
+         }
+         
+        });
 </script>
 
 

@@ -43,6 +43,13 @@
 
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    <listener>
+		<description>presenceListener</description>
+		<listener-class>
+			com.anpi.app.listener.PresenceListener
+		</listener-class>
+	</listener>
 
     <servlet-mapping>
         <servlet-name>Chat API</servlet-name>

@@ -54,7 +54,7 @@ public class JabberSmackAPI implements MessageListener,PacketListener {
 //		displayBuddyList();
 		System.out.println("-----");
 //		connectedSessions.add(room);
-		httpSession.setAttribute("userSession", connectedSessions);
+//		httpSession.setAttribute("userSession", connectedSessions);
 		this.dummySession = session;
 		Connection connections = (Connection) httpSession.getAttribute("connection");
 		
@@ -91,7 +91,6 @@ public class JabberSmackAPI implements MessageListener,PacketListener {
 		System.out.println("session "+ session.getId() +"has ended");
 //		String room = (String) session.getUserProperties().get("room");
 //		connectedSessions.remove(room);
-		httpSession.setAttribute("userSession", connectedSessions);
 		session.close();
 	}
 	

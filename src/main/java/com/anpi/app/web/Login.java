@@ -112,6 +112,7 @@ public class Login {
 		    
 			listOfUsers.add(contacts);
 		}
+		
 		Collection<RosterGroup> rosterGroups = roster.getGroups();
 		
 		
